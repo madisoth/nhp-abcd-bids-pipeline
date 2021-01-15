@@ -195,7 +195,7 @@ def generate_parser(parser=None):
     )
     parser.add_argument(
         '--use-ants-reg', dest='useAntsReg', action='store_true',
-        help='perform ANTs-based intermediate registration of
+        help='perform ANTs-based intermediate registration of'
             'anatomical images to study template prior to'
             'registration to standard template (Yerkes19).'
     )
