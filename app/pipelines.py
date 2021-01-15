@@ -254,6 +254,7 @@ class ParameterSettings(object):
         :param study_template_brain: intermediate registration template brain.
         :return: None
         """
+
         self.studytemplate = study_template
         self.studytemplatebrain = study_template_brain
 
@@ -670,7 +671,10 @@ class PreFreeSurfer(Stage):
            ' --printcom={printcom}' \
            ' --fmapmagbrain={fmapmagbrain}' \
            ' --revepi={userevepi}' \
-           ' --multitemplatedir={multitemplatedir}'
+           ' --multitemplatedir={multitemplatedir}' \
+           ' --StudyTemplate={studytemplate}' \
+           ' --StudyTemplateBrain={studytemplatebrain}' \
+           ' --useAntsReg={useAntsReg}'
 
     def __init__(self, config):
         super(__class__, self).__init__(config)
