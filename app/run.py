@@ -301,6 +301,8 @@ def interface(bids_dir, output_dir, subject_list=None, session_list=None, collec
             session_spec.set_hypernormalization_method("ADULT_GM_IP")
         else:
             session_spec.set_hypernormalization_method(norm_method)
+        if useAntsReg is not False:
+            session_spec.set_use_ants_reg(useAntsReg)
         if t1_brain_mask is not None:
             session_spec.set_t1_brain_mask(t1_brain_mask)
         if t2_brain_mask is not None:
