@@ -202,8 +202,8 @@ class ParameterSettings(object):
         self.sshead = None
         self.ssbrain = None
 
-        # ANTs intermediate reg to study template
-        self.useAntsReg = 'false'
+        # FLIRT + FNIRT intermediate reg to study template
+        self.useIntermediateReg = 'false'
 
     def __getitem__(self, item):
         return self._params()[item]
@@ -262,9 +262,9 @@ class ParameterSettings(object):
         self.studytemplate = study_template
         self.studytemplatebrain = study_template_brain
     
-    def set_use_ants_reg(self, use_ants_reg):     
-        # Use ANTs-based intermediate registration to study template.
-        self.useAntsReg = use_ants_reg
+    def set_use_intermediate_reg(self, use_intermediate_reg):     
+        # Use FLIRT + FNIRT-based intermediate registration to study template.
+        self.useIntermediateReg = use_intermediate_reg
 
     def set_templates_dir(self, multi_template_dir):
         """
@@ -682,7 +682,7 @@ class PreFreeSurfer(Stage):
            ' --multitemplatedir={multitemplatedir}' \
            ' --StudyTemplate={studytemplate}' \
            ' --StudyTemplateBrain={studytemplatebrain}' \
-           ' --useAntsReg={useAntsReg}'
+           ' --useIntermediateReg={useIntermediateReg}'
 
     def __init__(self, config):
         super(__class__, self).__init__(config)

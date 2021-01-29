@@ -60,7 +60,7 @@ def _cli():
                      args.t1_brain_mask,
                      args.t2_brain_mask,
                      args.study_template,
-                     args.useAntsReg,
+                     args.useIntermediateReg,
                      args.cleaning_json,
                      args.print,
                      args.ignore_expected_outputs,
@@ -194,8 +194,8 @@ def generate_parser(parser=None):
              'Template.'
     )
     parser.add_argument(
-        '--use-ants-reg', dest='useAntsReg', action='store_true',
-        help='perform ANTs-based intermediate registration of'
+        '--use-intermediate-reg', dest='useIntermediateReg', action='store_true',
+        help='perform FLIRT + FNIRT-based intermediate registration of'
             'anatomical images to study template prior to'
             'registration to standard template (Yerkes19).'
     )
@@ -247,7 +247,7 @@ def generate_parser(parser=None):
 
 def interface(bids_dir, output_dir, subject_list=None, session_list=None, collect=False, ncpus=1,
               start_stage=None, bandstop_params=None, max_cortical_thickness=5, check_only=False,
-              t1_brain_mask=None, t2_brain_mask=None, study_template=None, useAntsReg=False,
+              t1_brain_mask=None, t2_brain_mask=None, study_template=None, useIntermediateReg=False,
               cleaning_json=None, print_commands=False, ignore_expected_outputs=False, 
               multi_template_dir=None, norm_method=None, registration_assist=None, 
               freesurfer_license=None):
@@ -269,7 +269,7 @@ def interface(bids_dir, output_dir, subject_list=None, session_list=None, collec
     :param t2_brain_mask: specify mask to use instead of letting PreFreeSurfer create it.
     :param sshead: study specific template head for brain masking
     :param ssbrain: study specific template brain for brain masking
-    :param useAntsReg: ANTs-based intermediate registration to study template
+    :param useIntermediateReg: ANTs-based intermediate registration to study template
     :param multi_template_dir: directory of joint label fusion atlases
     :param norm_method: which method will be used for hyper-normalization step.
     :return:
@@ -301,8 +301,8 @@ def interface(bids_dir, output_dir, subject_list=None, session_list=None, collec
             session_spec.set_hypernormalization_method("ADULT_GM_IP")
         else:
             session_spec.set_hypernormalization_method(norm_method)
-        if useAntsReg is not False:
-            session_spec.set_use_ants_reg(useAntsReg)
+        if useIntermediateReg is not False:
+            session_spec.set_use_intermediate_reg(useIntermediateReg)
         if t1_brain_mask is not None:
             session_spec.set_t1_brain_mask(t1_brain_mask)
         if t2_brain_mask is not None:
